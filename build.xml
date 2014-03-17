@@ -108,7 +108,7 @@
  </target>
  <target name="jslint" description="Run the JSLint tool on JS files">
   <fileset dir="public/js" id="jsfiles.raw">
-    <exclude name="lib" />
+    <exclude name="**/lib" />
     <include name="**/*.js" />
     <exclude name="**/*.min.js" />
       </fileset>
