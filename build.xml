@@ -108,10 +108,10 @@
  </target>
  <target name="jslint" description="Run the JSLint tool on JS files">
   <fileset dir="public/js" id="jsfiles.raw">
+    <exclude name="lib" />
     <include name="**/*.js" />
     <exclude name="**/*.min.js" />
-     <exclude name="lib" />
-   </fileset>
+      </fileset>
   <pathconvert pathsep=" " property="jsfiles.clean" refid="jsfiles.raw" />
   <exec executable="java" output="build/logs/jslint.xml">
     <arg line="-jar ../../../jslint/jslint4java-2.0.5.jar --report checkstyle ${jsfiles.clean}" />
