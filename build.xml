@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="zenddemo" default="build">
+<project name="bookx" default="build">
  <target name="build"
    depends="prepare,lint,phploc,pdepend,phpmd-ci,phpcs-ci,phpcpd,phpcb,jslint,phpunit,phpdox"/>
 
@@ -110,7 +110,8 @@
   <fileset dir="public/js" id="jsfiles.raw">
     <include name="**/*.js" />
     <exclude name="**/*.min.js" />
-  </fileset>
+     <exclude name="bootstrap.*" />
+   </fileset>
   <pathconvert pathsep=" " property="jsfiles.clean" refid="jsfiles.raw" />
   <exec executable="java" output="build/logs/jslint.xml">
     <arg line="-jar ../../../jslint/jslint4java-2.0.5.jar --report checkstyle ${jsfiles.clean}" />
