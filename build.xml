@@ -110,7 +110,7 @@
   <fileset dir="public/js" id="jsfiles.raw">
     <include name="**/*.js" />
     <exclude name="**/*.min.js" />
-     <exclude name="bootstrap.*" />
+     <exclude name="lib" />
    </fileset>
   <pathconvert pathsep=" " property="jsfiles.clean" refid="jsfiles.raw" />
   <exec executable="java" output="build/logs/jslint.xml">
