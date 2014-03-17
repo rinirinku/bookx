@@ -28,5 +28,4 @@
       </exclude>
     </whitelist>
   </filter>
-
 </phpunit>
