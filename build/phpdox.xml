@@ -1,12 +1,18 @@
-<phpdox xmlns="http://phpdox.de/config">
- <project name="skeleton" source="src" workdir="build/phpdox">
-  <collector publiconly="false">
-   <include mask="*.php" />
-   <exclude mask="*Autoload.php" />
-  </collector>
-
-  <generator output="build">
-   <build engine="html" enabled="true" output="api"/>
+<?xml version="1.0" encoding="utf-8" ?>
+<phpdox xmlns="http://phpdox.net/config">
+  <project name="bookx" source="module" workdir="phpdox">
+    <collector backend="parser" />
+    <generator output="build">
+   <enrich base="build/logs">
+    <source type="build" />
+    <source type="git" />
+    <source type="phploc"/>
+    <source type="checkstyle" />
+    <source type="pmd" />
+   </enrich>
+      <build engine="html" enabled="true" output="api">
+    <file extension="html" />
+   </build>
   </generator>
  </project>
 </phpdox>
