@@ -6,7 +6,7 @@ use Zend\Test\PHPUnit\Controller\AbstractHttpControllerTestCase;
 
 class ApplicationControllerTest extends AbstractHttpControllerTestCase
 {
-	//protected $traceError = true;
+	protected $traceError = true;
    
      public function setUp()
     {
