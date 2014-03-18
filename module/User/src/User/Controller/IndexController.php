@@ -15,7 +15,7 @@ class IndexController extends AbstractActionController
 
     public function indexAction ()
     {
-       return new ViewModel();
+        return new ViewModel();
     }
 
     public function profileAction ()

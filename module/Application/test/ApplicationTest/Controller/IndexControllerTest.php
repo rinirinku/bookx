@@ -1,29 +1,22 @@
 <?php
-
 namespace ApplicationTest\Controller;
-
 use Zend\Test\PHPUnit\Controller\AbstractHttpControllerTestCase;
 
 class ApplicationControllerTest extends AbstractHttpControllerTestCase
 {
-	protected $traceError = true;
-   
-     public function setUp()
+
+    protected $traceError = true;
+
+    public function setUp ()
     {
         $this->setApplicationConfig(
-            //include '../TestConfig/TestConfig.php'
-             include '../../config/application.config.php'
-        );
+                include '../../config/application.config.php');
         parent::setUp();
     }
-    public function testIndexActionCanBeAccessed()
-	{
-	  
-	    $this->dispatch('/');
-		$this->assertResponseStatusCode(200);
-	   
 
-	}
-
-	
+    public function testIndexActionCanBeAccessed ()
+    {
+        $this->dispatch('/');
+        $this->assertResponseStatusCode(200);
+    }
 }

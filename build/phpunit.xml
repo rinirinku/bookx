@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<phpunit bootstrap="../module/Application/test/Bootstrap.php"
+<phpunit bootstrap="../module/TestConfig/Bootstrap.php"
          backupGlobals="false"
          backupStaticAttributes="false"
          strict="true"
@@ -8,7 +8,7 @@
        
   <testsuites>
     <testsuite name="Bookx">
-        <directory suffix="Test.php">../module/Album/test</directory>
+        <directory suffix="Test.php">../module/TestConfig</directory>
      </testsuite>
   </testsuites>
 
