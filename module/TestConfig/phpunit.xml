@@ -3,7 +3,9 @@
 <phpunit bootstrap="Bootstrap.php" colors="true">
     <testsuites>
         <testsuite name="bookx">
-            <directory>./ApplicationTest</directory>
+            <directory>../Application/test/ApplicationTest</directory>
+            <directory>../User/test/UserTest</directory>
+          
         </testsuite>
     </testsuites>
 </phpunit>

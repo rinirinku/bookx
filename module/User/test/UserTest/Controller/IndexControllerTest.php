@@ -4,15 +4,15 @@ namespace ApplicationTest\Controller;
 
 use Zend\Test\PHPUnit\Controller\AbstractHttpControllerTestCase;
 
-class ApplicationControllerTest extends AbstractHttpControllerTestCase
+class UserControllerTest extends AbstractHttpControllerTestCase
 {
 	protected $traceError = true;
    
      public function setUp()
     {
-        $this->setApplicationConfig(
-            //include '../TestConfig/TestConfig.php'
-             include '../../config/application.config.php'
+         $this->setApplicationConfig(
+              include '../../config/application.config.php'
+                                  
         );
         parent::setUp();
     }

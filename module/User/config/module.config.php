@@ -10,12 +10,12 @@
 return array (
 		'router' => array (
 				'routes' => array (
-						'home' => array (
+						'login' => array (
 								'type' => 'Zend\Mvc\Router\Http\Literal',
 								'options' => array (
-										'route' => '/',
+										'route' => '/login',
 										'defaults' => array (
-												'controller' => 'Application\Controller\Index',
+												'controller' => 'User\Controller\Index',
 												'action' => 'index' 
 										) 
 								) 
@@ -26,15 +26,15 @@ return array (
 						// a new
 						// module. Simply drop new controllers in, and you can
 						// access them
-						// using the path /application/:controller/:action
-						'application' => array (
+						// using the path /login/:controller/:action
+						'profile' => array (
 								'type' => 'Literal',
 								'options' => array (
-										'route' => '/application',
+										'route' => '/profile',
 										'defaults' => array (
-												'__NAMESPACE__' => 'Application\Controller',
+												'__NAMESPACE__' => 'User\Controller',
 												'controller' => 'Index',
-												'action' => 'index' 
+												'action' => 'profile' 
 										) 
 								),
 								'may_terminate' => true,
@@ -75,7 +75,7 @@ return array (
 		),
 		'controllers' => array (
 				'invokables' => array (
-						'Application\Controller\Index' => 'Application\Controller\IndexController' 
+						'User\Controller\Index' => 'User\Controller\IndexController' 
 				) 
 		),
 		'view_manager' => array (
@@ -85,8 +85,8 @@ return array (
 				'not_found_template' => 'error/404',
 				'exception_template' => 'error/index',
 				'template_map' => array (
-						'layout/layout' => __DIR__ . '/../view/layout/layout.phtml',
-						'application/index/index' => __DIR__ . '/../view/application/index/index.phtml',
+						
+						'login/index/index' => __DIR__ . '/../view/login/index/index.phtml',
 						'error/404' => __DIR__ . '/../view/error/404.phtml',
 						'error/index' => __DIR__ . '/../view/error/index.phtml' 
 				),
