@@ -11,15 +11,17 @@ return array(
         'router' => array(
                 'routes' => array(
                         'login' => array(
-                                'type' => 'Zend\Mvc\Router\Http\Literal',
+                                'type' => 'Segment',
                                 'options' => array(
-                                        'route' => '/login',
-                                        'defaults' => array(
+                                        'route' => '/login[/][:action]',
+                                      'defaults' => array(
                                                 'controller' => 'User\Controller\Index',
                                                 'action' => 'index'
                                         )
-                                )
-                        ),
+                                ),
+                                
+                        )
+                        ,
                         // The following is a route to simplify getting started
                         // creating
                         // new controllers and actions without needing to create
@@ -53,6 +55,7 @@ return array(
                                 )
                         )
                 )
+                
         ),
         'service_manager' => array(
                 'abstract_factories' => array(

@@ -8,30 +8,43 @@
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 namespace Application;
-
 use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
 
 class Module
- {
-	public function onBootstrap(MvcEvent $e)
-	 {
-		$eventManager = $e->getApplication ()->getEventManager ();
-		$moduleRouteListener = new ModuleRouteListener ();
-		$moduleRouteListener->attach ( $eventManager );
-	}
-	public function getConfig()
-	{
-		return include __DIR__ . '/config/module.config.php';
-	}
-	public function getAutoloaderConfig()
-	{
-		return array (
-				'Zend\Loader\StandardAutoloader' => array (
-						'namespaces' => array (
-								__NAMESPACE__ => __DIR__ . '/src/' . __NAMESPACE__ 
-						) 
-				) 
-		);
-	}
+{
+
+    public function onBootstrap (MvcEvent $e)
+    {
+        $eventManager = $e->getApplication()->getEventManager();
+        $moduleRouteListener = new ModuleRouteListener();
+        $moduleRouteListener->attach($eventManager);
+        // remove logout page if no identity
+        $application = $e->getApplication();
+        $sm = $application->getServiceManager();
+        $authservice = $sm->get('AuthService');
+        // var_dump($authservice->hasIdentity());
+        if (! $authservice->hasIdentity()) {
+            $container = $sm->get('navigation');
+            $logoutPage = $container->findBy('action', 'logout');
+            $container->removePage($logoutPage);
+        }
+    }
+
+    public function getConfig ()
+    {
+        return include __DIR__ . '/config/module.config.php';
+    }
+
+    public function getAutoloaderConfig ()
+    {
+        return array(
+                'Zend\Loader\StandardAutoloader' => array(
+                        'namespaces' => array(
+                                __NAMESPACE__ => __DIR__ . '/src/' .
+                                         __NAMESPACE__
+                        )
+                )
+        );
+    }
 }

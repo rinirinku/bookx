@@ -54,6 +54,31 @@ return array (
 						) 
 				) 
 		),
+		'navigation' => array(
+		        'default' => array(
+		                array(
+		                        'label' => 'Home',
+		                        'route' => 'home',
+		                ),
+		                array(
+		                        'label' => 'Profile',
+		                        'route' => 'profile',
+		                        /*'pages' => array(
+		                         array(
+		                                 'label' => 'Add',
+		                                 'route' => 'album',
+		                                 'action' => 'add',
+		                         ),
+		
+		                        ),*/
+		                ),
+		                array(
+		                        'label' => 'Logout',
+		                        'route' => 'login',
+		                        'action'=> 'logout'
+		                ),
+		        ),
+		),
 		'service_manager' => array (
 				'abstract_factories' => array (
 						'Zend\Cache\Service\StorageCacheAbstractServiceFactory',
@@ -61,7 +86,11 @@ return array (
 				),
 				'aliases' => array (
 						'translator' => 'MvcTranslator' 
-				) 
+				),
+				'factories' => array(
+				        //navigation
+				        'navigation' => 'Zend\Navigation\Service\DefaultNavigationFactory',
+				)
 		),
 		'translator' => array (
 				'locale' => 'en_US',

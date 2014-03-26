@@ -9,12 +9,31 @@
 namespace Application\Controller;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
-
+use Application\Form\CreateProduct;
+use Application\Entity\Product;
 class IndexController extends AbstractActionController
 {
 
+    /**
+     *
+     * @return array \
+     */
     public function indexAction ()
     {
-        return new ViewModel();
+        $form = new CreateProduct();
+        $product = new Product();
+        $form->bind($product);
+        
+        if ($this->request->isPost()) {
+            $form->setData($this->request->getPost());
+            
+            if ($form->isValid()) {
+                var_dump($product);
+            }
+        }
+        
+        return array(
+                'form' => $form
+        );
     }
 }

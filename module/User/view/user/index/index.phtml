@@ -1,1 +1,55 @@
-login
+<?php
+// $form->setAttribute('action', $this->url('/login/index/authenticate'))
+// ->prepare();
+
+// echo $this->form()->openTag($form);
+
+// $user = $form->get('user');
+
+// echo $this->formRow($user->get('username'));
+// echo $this->formRow($user->get('password'));
+// echo $this->formElement($form->get('submit'));
+
+// echo $this->form()->closeTag();
+?>
+<?php
+if($this->messages)
+    foreach($this->messages as $eachmsg)
+        echo $eachmsg."<br>";
+//$form=$this->form;
+$form->setAttribute('action', $this->url('login', array('action' => 'authenticate')));
+$form->prepare();
+
+echo $this->form()->openTag($form);
+$user = $form->get('user');
+?>
+<div class="row">
+	<div class="col-md-4">
+		<div class="form-group">
+			<label for="username">User Name</label>
+			<!-- 				<input type="text" -->
+			<!-- 					class="form-control" name="username" placeholder="Enter username"> -->
+ 			<?php
+    echo $this->formRow($user->get('username')) . "@experionglobal.com";
+    ?>
+ 			</div>
+		<div class="form-group">
+			<label for="password">Password</label>
+			<!-- 				 <input type="password" -->
+			<!-- 					class="form-control" name="password" placeholder="Password"> -->
+				<?php
+    echo $this->formRow($user->get('password'));
+    ?>
+			</div>
+		<div class="form-group">
+				<?php
+    echo $this->formRow($user->get('rememberme'));
+    ?>
+			</div>
+		<!-- 			<button type="submit" class="btn btn-default">Submit</button> -->
+			<?php echo $this->formElement($form->get('submit'));?>
+		</div>
+</div>
+<?php
+echo $this->form()->closeTag();
+?>

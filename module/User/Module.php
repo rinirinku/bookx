@@ -9,7 +9,10 @@
 namespace User;
 use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
-
+use Zend\Authentication\AuthenticationService;
+use User\Adapter\AuthAdapter;
+use User\Adapter\AuthStorage;
+use User\Model\UserModel;
 class Module
 {
 
@@ -18,6 +21,7 @@ class Module
         $eventManager = $e->getApplication()->getEventManager();
         $moduleRouteListener = new ModuleRouteListener();
         $moduleRouteListener->attach($eventManager);
+        
     }
 
     public function getConfig ()
@@ -35,5 +39,31 @@ class Module
                         )
                 )
         );
+    }
+    public function getServiceConfig()
+    {
+        return array(
+                'factories'=>array(
+                        'User\Adapter\AuthStorage' => function($sm){
+                            return new \User\Adapter\AuthStorage('bookx');
+                        },
+                        'User\Model\UserModel' =>  function($sm) {
+                            $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+                            return new UserModel($dbAdapter);
+                        },
+                        'User\Adapter\AuthAdapter'=> function($sm){
+                            return new \User\Adapter\AuthAdapter($sm->get('User\Model\UserModel'));
+                        },
+                        'AuthService' => function($sm) {
+                            $authAdapter = $sm->get('User\Adapter\AuthAdapter');
+                            $authService = new AuthenticationService();
+                            $authService->setAdapter($authAdapter);
+                            $authService->setStorage($sm->get('User\Adapter\AuthStorage'));
+                            return $authService;
+                        },
+                        
+                ),
+        );
+         
     }
 }
